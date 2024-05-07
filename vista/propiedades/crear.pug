@@ -1,6 +1,9 @@
 extends ../disposicion/index
 
 
+block styles
+    link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+    
 block contenido
     div.py-10
         h1.text-center.text-4xl.text-extrabold.my-10 Bienes
@@ -18,6 +21,11 @@ block contenido
                                         label.block.text-sm.uppercase.text-gray-700.mb-1.font-bold(for="titulo") Titulo de anuncio
                                         input#titulo.w-full.px-3.py-1.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Titulo propiedad, ej casa en la playa" 
                                         name="titulo" type="text")
+
+                                    div
+                                        label.block.text-sm.uppercase.text-gray-700.mb-1.font-bold(for="descripcion") Descripción
+                                        textarea#descripcion.w-full.px-3.py-1.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Descripción de la propiedad" 
+                                        name="descripcion" )
                                     
                                     div(class="md:flex md:gap-4 space-y-5 md:space-y-0")
                                         
@@ -55,12 +63,28 @@ block contenido
                                                     while n < 5
                                                         option(value=n) #{n++}
 
+
+                                    div.boder-gray-200.boder-t.py-5.space-y-5
+                                        h3.text-lg.leading-6.font-mediumm.text-gray-800 Ubicación
+                                        p.text-gray-600 Ubica la propiedad
+                                        #mapa.h-96.space-y-5
+
+                                        div
+                                            p.calle
+
+                                        input(type="hidden",name="calle", id="calle")
+                                        input(type="hidden",name="lat", id="lat")
+                                        input(type="hidden",name="lng", id="lng")
+
+
+
+
 block scripts
     script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
     script(src="https://unpkg.com/esri-leaflet@3.0.8/dist/esri-leaflet.js")
     script(src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geosearch/2.7.0/bundle.min.js")
-    script(src="js/name.js")
+    script(src="/js/name.js")
 
 
                         
