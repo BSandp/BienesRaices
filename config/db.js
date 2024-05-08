@@ -18,7 +18,7 @@ const db = new Sequelize(process.env.BD_NOMBRE,process.env.BD_USER , process.env
         acquire: 30000, //TIEMPO DE RESPUESTA ANTES DE SALIR ERROR
         idle: 10000 //SEGUNDOS PARA DESCONECTARSE SIN USO
     },
-    operatorsAliases: false
+    operatorsAliases: 0
 });
 
 export default db;
