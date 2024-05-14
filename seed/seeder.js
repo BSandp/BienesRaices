@@ -1,8 +1,10 @@
-import Categoria from "../modelos/Categoria.js";
 import categorias from "./categoriasSeed.js";
 import db from "../config/db.js";
 import precios from "./PreciosSeed.js";
-import Precio from "../modelos/Precio.js";
+import {Precio, Categoria} from '../modelos/relaciones.js';
+
+
+
 const importarDatos= async () => {
 
     try {
