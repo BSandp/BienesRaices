@@ -1,7 +1,8 @@
 import categorias from "./categoriasSeed.js";
+import usuarios from "./usuarios.js";
 import db from "../config/db.js";
 import precios from "./PreciosSeed.js";
-import {Precio, Categoria} from '../modelos/relaciones.js';
+import {Precio, Categoria, Usuario} from '../modelos/relaciones.js';
 
 
 
@@ -17,7 +18,8 @@ const importarDatos= async () => {
     // insertar datos
     await Promise.all([
          Categoria.bulkCreate(categorias),
-         Precio.bulkCreate(precios)
+         Precio.bulkCreate(precios),
+         Usuario.bulkCreate(usuarios)
     ]);
         console.log('Datos insertados en la base de datos');
         process.exit(0);
