@@ -44,8 +44,9 @@ const Propiedad= db.define('Propiedades',{
         allowNull: false,
     },
     imagen:{
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
+        defaultValue: null
     },
     publicado:{
         type: DataTypes.BOOLEAN,

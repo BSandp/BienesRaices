@@ -47,8 +47,8 @@ const guardar = async (req,res)=>{
     )}
 
     //crear un registro
-    const {titulo, descripcion, habitaciones, estacionamiento, wc, calle, lat, lng, precio:precioId, categoria:categoriaId, } = req.body;
-    const {id: usuarioId} = req.usuario;
+    const {titulo, descripcion, habitaciones, estacionamiento, wc, calle, lat, lng, precio:PrecioId, categoria:CategoriaId, } = req.body;
+    const {id: UsuarioId} = req.usuario;
     try {
         const propiedadGuardada= await Propiedad.create({
             titulo,
@@ -59,9 +59,9 @@ const guardar = async (req,res)=>{
             calle,
             lat, 
             lng,
-            precioId,
-            categoriaId,
-            usuarioId,
+            PrecioId,
+            CategoriaId,
+            UsuarioId,
             imagen: ''
         })
 
@@ -76,8 +76,33 @@ const guardar = async (req,res)=>{
 }
 
 const agregarImagen= async (req, res) => {
+    const {id}=req.params;
+
+
+
+    ///validar que la propiedad exista
+    const propiedad = await  Propiedad.findByPk(id);
+
+    if(!propiedad){ 
+        return res.redirect('/propiedades')
+}
+
+    //validar que la propiedad no este publicada
+    
+    if(propiedad.publicado) { 
+        return res.redirect('/propiedades')
+}
+    // /validar que propiedad pertenezca a quien visita la pagina
+//     if (req.usuario.id !== propiedad.usuarioId){ 
+//         return res.redirect('/mis-propiedades')
+// }
+// console.log(propiedad)
+
+
     res.render('propiedades/agregar-imagen',{
-    pagina:'Agregar Imagen',
+    pagina:`Agregar Imagen: ${propiedad.titulo}`,
+    csrfToken: req.csrfToken(),
+    propiedad
 })
 }
 
